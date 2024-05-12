@@ -48,8 +48,11 @@ jobs:
       - name: Build Jekyll site
         working-directory: events
         run: |
+          ls
           bundle install
+          pwd
           bundle exec jekyll build
+          pwd 
         env:
           JEKYLL_ENV: production
 
