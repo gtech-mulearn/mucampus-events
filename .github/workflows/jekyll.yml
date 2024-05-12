@@ -48,20 +48,10 @@ jobs:
       - name: Build Jekyll site
         working-directory: events
         run: |
-          ls
-          bundle install
-          pwd
+          bundle install --gemfile=events/Gemfile
+          bundle config set --local path events/
           bundle exec jekyll build
-
-      - name: Debugging - List contents before CD
-        run: |
-           ls
-      - name: Change to events directory
-        working-directory: events
-        run: cd events
-      - name: Debugging - List contents after CD
-        run: |
-           ls
+          
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
@@ -70,7 +60,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: "${{ steps.deployment.outputs.page_url }}/events"
     runs-on: ubuntu-latest
     needs: build
     steps:
