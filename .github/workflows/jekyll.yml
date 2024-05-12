@@ -66,8 +66,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          path: mucampus-events # Specify the desired directory path
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
