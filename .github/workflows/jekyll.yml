@@ -52,9 +52,7 @@ jobs:
           bundle config set --local path events/
           bundle exec jekyll build
           
-      - name: Upload artifact
-        with:
-          path: events       
+      - name: Upload artifact     
         uses: actions/upload-pages-artifact@v3
         
 
