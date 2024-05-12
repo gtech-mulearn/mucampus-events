@@ -47,9 +47,8 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Build Jekyll site
         run: |
-          pwd
           cd events
-          pwd
+          ls
           bundle install
           bundle exec jekyll build 
         env:
