@@ -48,8 +48,7 @@ jobs:
       - name: Build Jekyll site
         working-directory: events
         run: |
-          bundle install --gemfile=events/Gemfile
-          bundle config set --local path events/
+          bundle install 
           bundle exec jekyll build
           
       - name: Upload artifact
