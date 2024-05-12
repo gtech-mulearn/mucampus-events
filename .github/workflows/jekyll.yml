@@ -53,6 +53,8 @@ jobs:
          bundle exec jekyll build
           
       - name: Upload artifact
+        with:
+          path : events
         uses: actions/upload-pages-artifact@v3
         
 
