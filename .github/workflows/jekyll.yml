@@ -21,6 +21,7 @@ jobs:
       run: |
         gem install bundler:2.5.10 # or the version specified in your Gemfile.lock
         bundle config set --local deployment 'true'
+        cd events
         bundle install
 
     # Remove this step as you're now using Bundler to install the dependencies
