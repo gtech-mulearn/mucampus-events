@@ -1,20 +1,17 @@
-name: Process MDX Pull Requests
+name: Build and Serve Jekyll Site
 
 on:
-  pull_request:
-    paths:
-      - '**.yml'
-      - '**.yaml'
+  push:
+    branches:
+      - main
 
 jobs:
 
-  convert-and-build:
+  build-and-serve:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -26,21 +23,15 @@ jobs:
         gem install jekyll
         gem install jekyll-mdx
 
-    - name: Convert YAML to MDX
-      run: |
-        mkdir -p _posts
-        for file in ${{ github.event.pull_request.head.repo.full_name }}/*.y*ml; do
-          filename=$(basename "$file")
-          yaml2mdx "$file" > "_posts/$(date +'%Y-%m-%d')-${filename%.y*ml}.markdown"
-        done
-
     - name: Build Jekyll site
       run: |
+        cd events
         jekyll build --config _config.yml
 
     - name: Start Jekyll server
       run: |
-        jekyll serve --skip-initial-build --host 0.0.0.0 &
+        cd events/_site
+        jekyll serve --host 0.0.0.0 &
         sleep 3
         curl http://0.0.0.0:4000
 
@@ -48,4 +39,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: jekyll-site
-        path: _site/
+        path: events/_site/
