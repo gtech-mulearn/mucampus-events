@@ -1,3 +1,4 @@
+---
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
@@ -5,7 +6,6 @@
 
 # Sample workflow for building and deploying a Jekyll site to GitHub Pages
 name: Deploy Jekyll site to Pages
-
 
 on:
   # Runs on pushes targeting the default branch
@@ -39,7 +39,7 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
         with:
-          ruby-version: '3.1' # Not needed with a .ruby-version file
+          ruby-version: "3.1" # Not needed with a .ruby-version file
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
           cache-version: 0 # Increment this number if you need to re-download cached gems
       - name: Setup Pages
@@ -48,15 +48,13 @@ jobs:
       - name: Build Jekyll site
         working-directory: events
         run: |
-         bundle config set --local path events/
-         bundle install --gemfile=events/Gemfile
-         bundle exec jekyll build
-          
+          bundle config set --local path events/
+          bundle install --gemfile=events/Gemfile
+          bundle exec jekyll build
       - name: Upload artifact
-        with:
-          path : events
         uses: actions/upload-pages-artifact@v3
-        
+        with:
+          path: events
 
   # Deployment job
   deploy:
@@ -66,6 +64,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          path: mucampus-events # Specify the desired directory path
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
