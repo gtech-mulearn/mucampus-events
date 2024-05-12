@@ -46,15 +46,12 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Build Jekyll site
-        working-directory: events
         run: |
-          ls
-          bundle install
-          pwd
-          bundle exec jekyll build
-          pwd 
-        env:
-          JEKYLL_ENV: production
+         cd events
+         ls
+         bundle install
+         pwd
+         bundle exec jekyll build
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
