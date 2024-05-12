@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-
   build-and-serve:
     runs-on: ubuntu-latest
 
@@ -16,22 +15,30 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-         ruby-version: '3.0'
+        ruby-version: '3.0' # or the version specified in your .ruby-version file
 
-    - name: Install dependencies
+    - name: Install Bundler
       run: |
-        gem install jekyll
+        gem install bundler:2.5.10 # or the version specified in your Gemfile.lock
+        bundle config set --local deployment 'true'
+        bundle install
 
+    # Remove this step as you're now using Bundler to install the dependencies
+    # - name: Install dependencies
+    #   run: |
+    #     gem install jekyll
+    #     gem install minima
+    #     gem install jekyll-feed
 
     - name: Build Jekyll site
       run: |
         cd events
-        jekyll build --config _config.yml
+        bundle exec jekyll build --config _config.yml
 
     - name: Start Jekyll server
       run: |
         cd events/_site
-        jekyll serve --host 0.0.0.0 &
+        bundle exec jekyll serve --host 0.0.0.0 &
         sleep 3
         curl http://0.0.0.0:4000
 
