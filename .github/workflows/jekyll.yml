@@ -53,7 +53,9 @@ jobs:
           bundle exec jekyll build
           
       - name: Upload artifact
-        run : pwd 
+        with:
+          path: events       
+        uses: actions/upload-pages-artifact@v3
         
 
   # Deployment job
