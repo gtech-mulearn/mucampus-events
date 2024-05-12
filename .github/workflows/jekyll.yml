@@ -53,7 +53,15 @@ jobs:
           pwd
           bundle exec jekyll build
 
-
+      - name: Debugging - List contents before CD
+        run: |
+           ls
+      - name: Change to events directory
+        working-directory: events
+        run: cd events
+      - name: Debugging - List contents after CD
+        run: |
+           ls
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
         uses: actions/upload-pages-artifact@v3
