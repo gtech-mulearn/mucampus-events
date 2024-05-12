@@ -34,8 +34,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          path: events
       - name: Setup Ruby
         uses: ruby/setup-ruby@8575951200e472d5f2d95c625da0c7bec8217c42 # v1.161.0
         with:
@@ -46,16 +44,12 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - name: Build Jekyll site
-        working-directory: events
         run: |
-          bundle config set --local path events/
-          bundle install --gemfile=events/Gemfile
+          bundle install 
           bundle exec jekyll build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: events
-
+        
   deploy:
     environment:
       name: github-pages
@@ -65,10 +59,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          path: mucampus-events
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          working-directory: mucampus-events
+
