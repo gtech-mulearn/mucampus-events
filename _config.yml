@@ -1,8 +1,8 @@
 title: μlearn
 tagline: Campus Activites
 author:
-  name: Vishakh Abhayan
-  url: https://twitter.com/AbhayanVishakh
+  name: μlearn
+  url: https://mulearn.org
 
 plugins:
   - jekyll-feed
@@ -11,7 +11,7 @@ plugins:
 
 # Build Settings
 
-paginate: 2
+paginate: 4
 
 tags_path: /tags/
 categories_path: /categories/
