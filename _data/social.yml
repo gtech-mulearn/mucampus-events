@@ -1,9 +1,12 @@
 - title: Email
-  url: mailto:zivmsg@gmail.com
+  url: info@mulearn.org
   icon: fas fa-envelope
 - title: Twitter
-  url: https://twitter.com/zivtwt
+  url: https://x.com/GtechMulearn
   icon: fab fa-twitter
 - title: GitHub
-  url: https://github.com/zivhub
+  url: https://github.com/gtech-mulearn
   icon: fab fa-github
+- title: Instagram
+  url: https://www.instagram.com/mulearn.official/
+  icon: fab fa-instagram
