@@ -1,1 +1,6 @@
-events/_site
+*.gem
+.bundle
+.jekyll-cache
+.sass-cache
+_site
+Gemfile.lock
